@@ -66,6 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (empty($imageErr)) {
             $targetDir = "uploads/";
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
             $image = basename($_FILES['image']['name']);
             $targetFile = $targetDir . $image;
             move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
